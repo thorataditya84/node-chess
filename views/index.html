@@ -25,7 +25,23 @@
     <!-- Socket IO -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
 
+    <script src="../public/js/chess.js"></script>
+    <script src="../public/js/board.js"></script>
+    <link rel="stylesheet" href="../public/css/board.css" />
+
     <style>
+      .number::-webkit-inner-spin-button,
+      .number::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      #roomNumbers {
+        margin: 7px;
+      }
+      body {
+        margin: 4%;
+      }
+
       body {
         margin: 4%;
       }
@@ -42,6 +58,36 @@
   <body>
     <div class="container">
       <div id="board"></div>
+
+      <div>
+        <div id="player"></div>
+
+        <div id="roomNumbers">Enter a room number between 0 and 99</div>
+
+        <form>
+          <div class="row">
+            <div class="col">
+              <input
+                type="number"
+                id="room"
+                min="0"
+                max="99"
+                class="form-control form-control-md number"
+              />
+            </div>
+
+            <div class="col">
+              <button id="button" class="btn btn-success" onclick="connect()">
+                Connect
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div id="state">Join Game</div>
+      </div>
     </div>
+
+    <script src="../public/js/game.js"></script>
   </body>
 </html>

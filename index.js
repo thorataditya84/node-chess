@@ -15,7 +15,26 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', function (socket) {
-    console.log('a player connected');
+    var color;
+    var playerId = Math.floor((Math.random() * 100) + 1)
+
+    console.log(playerId + ' connected');
+
+    socket.on('joined', function (roomId) {
+        if (games[roomId].players < 2) {
+            games[roomId].players++;
+            games[roomId].pid[games[roomId].players - 1] = playerId;
+        }
+        else {
+            return;
+        }
+
+        console.log(games[roomId]);
+        players = games[roomId].players
+
+        if (players % 2 == 0) color = 'black';
+        else color = 'white';
+    });
 });
 
 server.listen(PORT, function () {
